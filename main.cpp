@@ -39,6 +39,10 @@ int edgegionizer(char label) {
 }
 int removeDaVertex(char label){
     int index = edgegionizer(label);
+    if (index == -1) {
+        cout << "Vertex not found.\n";
+        return;
+    }
     
     for (int i = index; i < currentSize - 1; ++i) {
         for (int j = 0; j < currentSize; ++j) {
@@ -50,6 +54,10 @@ int removeDaVertex(char label){
         for (int i = 0; i < currentSize - 1; ++i) {
             table[i][j] = table[i][j + 1];
         }
+    }
+    
+    for (int i = index; i < currentSize - 1; ++i) {
+        labels[i] = labels[i + 1];
     }
 
     currentSize--;
