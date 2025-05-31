@@ -37,6 +37,24 @@ int edgegionizer(char label) {
     }
     return -1;
 }
+int removeDaVertex(char label){
+    int index = edgegionizer(label);
+    
+    for (int i = index; i < currentSize - 1; ++i) {
+        for (int j = 0; j < currentSize; ++j) {
+            table[i][j] = table[i + 1][j];
+        }
+    }
+
+    for (int j = index; j < currentSize - 1; ++j) {
+        for (int i = 0; i < currentSize - 1; ++i) {
+            table[i][j] = table[i][j + 1];
+        }
+    }
+
+    currentSize--;
+    cout << "Removed vertex: " << label << endl;
+}
 
 int main() {
     int choice;
@@ -74,7 +92,11 @@ int main() {
                 table[i][j] = depth;
                 table[j][i] = depth; 
             }           
-        }
+        } else if (choice == 3){
+	  char v;
+	  cout << "Enter vertex you want removed: ";
+	  cin >> v;
+	}
         printTable();
     }
     return 0;
