@@ -37,7 +37,7 @@ int edgegionizer(char label) {
     }
     return -1;
 }
-int removeDaVertex(char label){
+void removeDaVertex(char label){
     int index = edgegionizer(label);
     if (index == -1) {
         cout << "Vertex not found.\n";
@@ -104,6 +104,19 @@ int main() {
 	  char v;
 	  cout << "Enter vertex you want removed: ";
 	  cin >> v;
+	} else if (choice == 4){
+	  char first, second;
+	  cout << "Enter first vertex: ";
+	  cin >> first;
+	  cout << "Enter second vertex: ";
+	  cin >> second;
+
+	  int i = edgegionizer(first);
+	  int j = edgegionizer(second);
+
+	  table[i][j] = 0;
+	  table[j][i] = 0;
+	  cout << "Edge removed between " << first << " and " << second << ".\n";	  
 	}
         printTable();
     }
